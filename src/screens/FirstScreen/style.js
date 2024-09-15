@@ -34,10 +34,12 @@ export const styles = StyleSheet.create({
     },
     textButton: {
       color: "#000000",
-      fontSize: "20px",
-      fontWeight: "bold",
+      fontSize: "22px",
+      fontWeight: "700",
       fontFamily: "Roboto",
       textAlign: "center",
+      textTransform: "uppercase",
+
     },
     button: {
       backgroundColor: "#E3C000",
