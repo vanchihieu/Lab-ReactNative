@@ -1,8 +1,6 @@
-import FisrtScreen from "./src/screens/FirstScreen";
+import { Text } from "react-native";
+import FirstScreen from "./src/screens/FirstScreen";
 
 export default function App() {
-  return (
-    <FisrtScreen/>
-  )
+  return <FirstScreen />;
 }
-
