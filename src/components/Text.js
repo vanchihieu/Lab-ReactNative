@@ -10,7 +10,7 @@ const TextComponent = (props) => {
       style={[
         {
           color: color,
-          fontSize: size,
+          fontSize: size ?? 16,
           fontFamily: font,
           fontWeight: weight ?? "bold",
           textAlign: "center",

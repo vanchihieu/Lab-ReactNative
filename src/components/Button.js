@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import TextComponent from "./Text";
+import { globalStyles } from "../styles/globalStyles";
 
 const Button = (props) => {
   const {
@@ -14,6 +15,7 @@ const Button = (props) => {
     textStyles,
     textFont,
     weight,
+    iconFlex,
   } = props;
   return (
     <View style={{ alignItems: "center" }}>
@@ -21,19 +23,15 @@ const Button = (props) => {
         disable={disable}
         onPress={onPress}
         style={[
+          globalStyles.button,
           {
             backgroundColor: color,
-            borderRadius: 6,
-            justifyContent: "center",
-            alignItems: "center",
-            padding: 10,
-            flexDirection: "row",
             width: "100%",
           },
           styles,
         ]}
       >
-        {icon}
+        {icon && iconFlex === "left" && icon}
         <TextComponent
           text={text}
           color={textColor}
@@ -41,6 +39,7 @@ const Button = (props) => {
           styles={textStyles}
           fontWeight={weight}
         />
+        {icon && iconFlex === "right" && icon}
       </TouchableOpacity>
     </View>
   );
