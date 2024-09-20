@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     marginBottom: 30,
+    marginTop: -90,
   },
   circle: {
     width: 140,

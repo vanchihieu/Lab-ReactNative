@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SecondScreen from "./src/screens/SecondScreen";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import ThirdScreen from "./src/screens/ThirdScreen";
+import FourthScreen from "./src/screens/FourthScreen/FourthScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -16,9 +17,10 @@ export default function App() {
             headerShown: false,
           }}
         >
-          {/* <Stack.Screen name="FirstScreen" component={FirstScreen} /> */}
-          {/* <Stack.Screen name="SecondScreen" component={SecondScreen} /> */}
+          <Stack.Screen name="FirstScreen" component={FirstScreen} />
+          <Stack.Screen name="SecondScreen" component={SecondScreen} />
           <Stack.Screen name="ThirdScreen" component={ThirdScreen} />
+          <Stack.Screen name="FourthScreen" component={FourthScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

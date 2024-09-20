@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./styles";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-const ThirdScreen = () => {
+const ThirdScreen = ({ navigation }) => {
   return (
     <LinearGradient
       colors={[
@@ -39,7 +39,10 @@ const ThirdScreen = () => {
           <TextInput placeholder="Email:" style={styles.inputEmail} />
         </View>
         <View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("FourthScreen")}
+          >
             <Text style={styles.textButton}>NEXT</Text>
           </TouchableOpacity>
         </View>
