@@ -1,6 +1,31 @@
-import { Text } from "react-native";
 import FirstScreen from "./src/screens/FirstScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import SecondScreen from "./src/screens/SecondScreen/SecondScreen";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
 export default function App() {
-  return <FirstScreen />;
+  const Stack = createNativeStackNavigator();
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          {/* <Stack.Screen name="FirstScreen" component={FirstScreen} /> */}
+          <Stack.Screen name="SecondScreen" component={SecondScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: StatusBar.currentHeight,
+    flex: 1,
+  },
+});
