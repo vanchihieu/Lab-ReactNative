@@ -5,8 +5,9 @@ import TextComponent from "../../components/Text";
 import Input from "../../components/Input";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import Button from "../../components/Button";
+import { globalStyles } from "../../styles/globalStyles";
 
-const SixthScreen = () => {
+const SixthScreen = ({ navigation }) => {
   const [current, setCurrent] = useState("test");
 
   return (
@@ -32,7 +33,8 @@ const SixthScreen = () => {
         <Input
           placeholder={"Password"}
           styleText={{ fontSize: 16 }}
-          styles={styles.marginTop}
+          styles={[styles.marginTop, globalStyles.row]}
+          isPassword
         />
         <Input
           placeholder={"Birthday"}
@@ -77,7 +79,7 @@ const SixthScreen = () => {
         color={"rgba(229, 57, 53, 1)"}
         textColor={"rgba(255, 255, 255, 1)"}
         styles={{ marginTop: 25 }}
-        onPress={() => navigation.navigate("SixthScreen")}
+        onPress={() => navigation.navigate("SeventhScreen")}
       />
 
       <TextComponent

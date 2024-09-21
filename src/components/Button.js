@@ -16,6 +16,7 @@ const Button = (props) => {
     textFont,
     weight,
     iconFlex,
+    textSize,
   } = props;
   return (
     <View style={{ alignItems: "center" }}>
@@ -36,6 +37,7 @@ const Button = (props) => {
           text={text}
           color={textColor}
           font={textFont}
+          size={textSize}
           styles={textStyles}
           fontWeight={weight}
         />

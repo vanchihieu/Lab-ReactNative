@@ -32,16 +32,22 @@ const Input = (props) => {
         placeholder={placeholder ?? ""}
         onChangeText={(val) => onChange(val)}
         secureTextEntry={isShowPass}
-        placeholderTextColor={"#747688"}
+        placeholderTextColor={"rgba(0, 0, 0, 1)"}
         autoCapitalize="none"
       />
       {/* {suffix ?? suffix} */}
+
       <TouchableOpacity
         onPress={
           isPassword ? () => setIsShowPass(!isShowPass) : () => onChange("")
         }
       >
-        {isPassword && <Image source={require("../../assets/eye.png")} />}
+        {isPassword && (
+          <Image
+            source={require("../../assets/eye.png")}
+            style={{ width: 30, height: 30 }}
+          />
+        )}
       </TouchableOpacity>
     </View>
   );

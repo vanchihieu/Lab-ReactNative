@@ -20,7 +20,8 @@
 
 ## Sixth Screen:
 
-![image](https://github.com/user-attachments/assets/7ac7361f-6230-40ac-9ef2-01ee4d9ac76a)
+![image](https://github.com/user-attachments/assets/93f46222-b7eb-4b3f-b8be-4af947d0a80b)
 
+## Seventh Screen:
 
-
+![image](https://github.com/user-attachments/assets/d4f2c92b-b186-4f3f-9423-e89289540b17)

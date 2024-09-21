@@ -7,8 +7,9 @@ import ThirdScreen from "./src/screens/ThirdScreen";
 import FourthScreen from "./src/screens/FourthScreen/FourthScreen";
 import { FifthScreen } from "./src/screens/FifthScreen";
 import { SixthScreen } from "./src/screens/SixthScreen";
+import { SeventhScreen } from "./src/screens/SeventhScreen";
 
-export default function App({navigation}) {
+export default function App({ navigation }) {
   const Stack = createNativeStackNavigator();
 
   return (
@@ -24,7 +25,8 @@ export default function App({navigation}) {
           <Stack.Screen name="ThirdScreen" component={ThirdScreen} />
           <Stack.Screen name="FourthScreen" component={FourthScreen} /> */}
           {/* <Stack.Screen name="FifthScreen" component={FifthScreen} /> */}
-          <Stack.Screen name="SixthScreen" component={SixthScreen} />
+          {/* <Stack.Screen name="SixthScreen" component={SixthScreen} /> */}
+          <Stack.Screen name="SeventhScreen" component={SeventhScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
