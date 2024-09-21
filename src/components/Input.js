@@ -11,9 +11,8 @@ const Input = (props) => {
     placeholder,
     isPassword,
     numberOfLine,
-    multiline,
     styles,
-    textStyle,
+    styleText,
   } = props;
 
   const [isShowPass, setIsShowPass] = useState(false);
@@ -26,7 +25,7 @@ const Input = (props) => {
           {
             paddingHorizontal: affix || suffix ? 14 : 12,
           },
-          textStyle,
+          styleText,
         ]}
         value={value}
         numberOfLines={numberOfLine}

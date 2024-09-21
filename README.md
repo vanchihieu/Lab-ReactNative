@@ -18,3 +18,9 @@
 
 ![image](https://github.com/user-attachments/assets/0b0d6056-00e0-438d-8319-c61bc6a6b759)
 
+## Sixth Screen:
+
+![image](https://github.com/user-attachments/assets/7ac7361f-6230-40ac-9ef2-01ee4d9ac76a)
+
+
+

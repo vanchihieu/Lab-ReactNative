@@ -6,7 +6,7 @@ import Input from "../../components/Input";
 import { globalStyles } from "../../styles/globalStyles";
 import Button from "../../components/Button";
 
-const FifthScreen = () => {
+const FifthScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TextComponent text={"LOGIN"} size={25} />
@@ -24,6 +24,7 @@ const FifthScreen = () => {
           color={"rgba(229, 57, 53, 1)"}
           textColor={"rgba(255, 255, 255, 1)"}
           styles={{ marginTop: 40 }}
+          onPress={() => navigation.navigate("SixthScreen")}
         />
       </View>
       <TextComponent
