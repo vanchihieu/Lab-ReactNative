@@ -11,7 +11,7 @@ const TextComponent = (props) => {
         {
           color: color,
           fontSize: size ?? 16,
-          fontFamily: font,
+          fontFamily: font ?? "Roboto",
           fontWeight: weight ?? "bold",
           textAlign: "center",
         },
