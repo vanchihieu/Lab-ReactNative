@@ -21,14 +21,7 @@ export default function App({ navigation }) {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="FirstScreen" component={FirstScreen} />
-          <Stack.Screen name="SecondScreen" component={SecondScreen} />
-          <Stack.Screen name="ThirdScreen" component={ThirdScreen} />
-          <Stack.Screen name="FourthScreen" component={FourthScreen} />
-          <Stack.Screen name="FifthScreen" component={FifthScreen} />
-          <Stack.Screen name="SixthScreen" component={SixthScreen} />
           <Stack.Screen name="SeventhScreen" component={SeventhScreen} />
-          <Stack.Screen name="EightScreen" component={EighthScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
