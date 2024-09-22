@@ -1,6 +1,32 @@
 import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 30,
+    paddingTop: 20,
+  },
+  flexColumn: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  marginTop: {
+    marginTop: 40,
+  },
+  font: {
+    fontSize: 20,
+    fontWeight: "700",
+    fontFamily: "Roboto",
+  },
+  flexCenter: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 100,
+    height: 120,
+  },
   inputContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -19,10 +45,6 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
     flexDirection: "row",
-  },
-  text: {
-    fontWeight: "500",
-    fontSize: 14,
   },
   row: {
     flexDirection: "row",

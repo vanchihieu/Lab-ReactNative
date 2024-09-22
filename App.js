@@ -4,6 +4,7 @@ import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { SeventhScreen } from "./src/screens/SeventhScreen";
 import SixthScreen from "./src/screens/SixthScreen/SixthScreen";
 import { Screen2 } from "./src/screens/Screen2";
+import { Screen3 } from "./src/screens/Screen3";
 
 export default function App({ navigation }) {
   const Stack = createNativeStackNavigator();
@@ -17,7 +18,8 @@ export default function App({ navigation }) {
           }}
         >
           {/* <Stack.Screen name="SeventhScreen" component={SeventhScreen} /> */}
-          <Stack.Screen name="Screen2" component={Screen2} />
+          {/* <Stack.Screen name="Screen2" component={Screen2} /> */}
+          <Stack.Screen name="Screen3" component={Screen3} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
