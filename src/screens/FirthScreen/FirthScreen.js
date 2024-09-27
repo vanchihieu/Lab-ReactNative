@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, View } from "react-native";
+import React, { useState } from "react";
+import { Alert, Image, View } from "react-native";
 import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 import TextComponent from "../../components/Text";
@@ -7,6 +7,36 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 const FirstScreen = ({ navigation }) => {
+  const users = [
+    {
+      username: "admin",
+      password: "admin",
+    },
+    {
+      username: "user",
+      password: "user",
+    },
+  ];
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangeValue = (value) => {
+    setUsername(value);
+  };
+
+  const handleLogin = () => {
+    const result = users.some((user) => {
+      return user.username === username && user.password === password;
+    });
+    if (result) {
+      Alert.alert("Login successfull!");
+      navigation.navigate('Screen2')
+    } else {
+      Alert.alert("Login failed");
+    }
+  };
+
   return (
     <LinearGradient
       colors={["rgba(251, 203, 0, 1)", "rgba(191, 154, 0, 1)"]}
@@ -34,6 +64,7 @@ const FirstScreen = ({ navigation }) => {
             />
           }
           style={styles.image}
+          onChange={(val) => handleChangeValue(val)}
         />
         <Input
           placeholder={"Password"}
@@ -51,6 +82,7 @@ const FirstScreen = ({ navigation }) => {
             />
           }
           isPassword
+          onChange={(val) => setPassword(val)}
         />
       </View>
 
@@ -60,7 +92,7 @@ const FirstScreen = ({ navigation }) => {
         textColor={"rgba(255, 255, 255, 1)"}
         textSize={18}
         styles={{ marginTop: 40 }}
-        onPress={() => navigation.navigate("SixthScreen")}
+        onPress={handleLogin}
       />
 
       <TextComponent
