@@ -6,7 +6,7 @@ import TextComponent from "../../components/Text";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
-const SeventhScreen = ({ navigation }) => {
+const FirstScreen = ({ navigation }) => {
   return (
     <LinearGradient
       colors={["rgba(251, 203, 0, 1)", "rgba(191, 154, 0, 1)"]}
@@ -72,4 +72,4 @@ const SeventhScreen = ({ navigation }) => {
   );
 };
 
-export default SeventhScreen;
+export default FirstScreen;

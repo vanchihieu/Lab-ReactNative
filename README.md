@@ -4,5 +4,8 @@
 
 ## Second Screen:
 
-![image](https://github.com/user-attachments/assets/4d84ce17-a767-4af2-aba4-af19914e77ab)
+![image](https://github.com/user-attachments/assets/2762ec3a-ec4c-4121-9453-22db23ac1912)
 
+## Third Screen:
+
+![image](https://github.com/user-attachments/assets/fba11ccf-2ab5-44ac-bee0-f18140533f17)

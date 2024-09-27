@@ -3,12 +3,13 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     paddingTop: 20,
+    backgroundColor: "#fff",
   },
-  flexColumn:{
+  flexColumn: {
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   marginTop: {
     marginTop: 40,
@@ -24,8 +25,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
+    objectFit: "cover",
   },
   imageCamera: {
     width: 40,
@@ -36,18 +38,17 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  star:{
+  star: {
     flexDirection: "row",
     gap: 15,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
-    
   },
   border: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "#1511EB",
-    padding: 15,
+    padding: 20,
     borderRadius: 6,
   },
   borderContent: {

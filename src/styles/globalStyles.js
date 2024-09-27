@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingTop: 20,
   },
   flexColumn: {
@@ -24,8 +24,9 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: 100,
-    height: 120,
+    width: 130,
+    height: 150,
+    objectFit: "cover",
   },
   inputContainer: {
     flexDirection: "row",
@@ -51,4 +52,5 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+ 
 });

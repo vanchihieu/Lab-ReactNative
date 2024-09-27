@@ -17,15 +17,15 @@ const Screen2 = () => {
           text={
             "USB Bluetooth Music Receiver HJX-001- Biến loa thường thành loa bluetooth"
           }
-          size={16}
-          styles={{ textAlign: "flex-start" }}
+          size={21}
+          styles={{ textAlign: "flex-start", numOfLine: 3 }}
         />
       </View>
 
       <TextComponent
         text={"Cực kỳ hài lòng"}
         styles={styles.marginTop}
-        size={18}
+        size={20}
       />
 
       <View style={[styles.star]}>
@@ -54,14 +54,14 @@ const Screen2 = () => {
         <TextComponent
           text={"Hãy chi sẻ những điều mà bạn thích về sản phẩm"}
           color={"#C4C4C4"}
-          size={16}
+          size={20}
           styles={{ textAlign: "start" }}
         />
         <TextComponent
           text={"https://meet.google.com/nsj-ojwi-xpp"}
           color={"#000000"}
-          size={11}
-          styles={{ textAlign: "end" }}
+          size={13}
+          styles={{ textAlign: "right" }}
         />
       </View>
 
