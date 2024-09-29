@@ -4,7 +4,12 @@ import { styles } from "./styles";
 import TextComponent from "../../components/Text";
 import Button from "../../components/Button";
 
-const Screen1 = () => {
+const Screen1 = ({ navigation, route }) => {
+  const indexImage = route.params?.indexImage;
+
+  const handleSelectColors = () =>
+      navigation.navigate('Screen2', { indexImage, product });
+
   const product = {
     name: "Điện Thoại Vsmart Joy 3 - Hàng chính hãng",
     reviewCount: 828,
@@ -83,6 +88,7 @@ const Screen1 = () => {
 
         <Pressable
           style={[styles.marginTop, styles.flexRow, styles.pickColorBtn]}
+          onPress={handleSelectColors}
         >
           <TextComponent
             text={product.colors.length + " MÀU-CHỌN MÀU"}
