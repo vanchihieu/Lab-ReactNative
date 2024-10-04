@@ -1,15 +1,8 @@
 ## First Screen:
 
-![image](https://github.com/user-attachments/assets/d4f2c92b-b186-4f3f-9423-e89289540b17)
+![image](https://github.com/user-attachments/assets/429325cc-e00b-4dd3-bd9b-78932a4c8009)
+
 
 ## Second Screen:
 
-![image](https://github.com/user-attachments/assets/2762ec3a-ec4c-4121-9453-22db23ac1912)
-
-## Third Screen:
-
-![image](https://github.com/user-attachments/assets/fba11ccf-2ab5-44ac-bee0-f18140533f17)
-
-## Fourth Screen:
-
-![image](https://github.com/user-attachments/assets/390fb106-039b-4a93-8fd5-16118838b3f1)
+![image](https://github.com/user-attachments/assets/eeffee2d-f04c-4511-976d-8acd9e0f1de1)

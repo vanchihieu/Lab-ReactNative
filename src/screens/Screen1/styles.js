@@ -4,28 +4,31 @@ export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     paddingVertical: 20,
+    flex: 1,
   },
   image: {
-    flex: 3,
+    flex: 3.5,
     width: "auto",
-    objectFit: "cover",
+    height: 120,
+    objectFit: "fill",
     borderRadius: 10,
   },
   content: { flex: 2 },
   flexRow: {
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 15,
+    gap: 10,
   },
   imgStart: {
-    width: 25,
-    height: 25,
+    width: 18,
+    height: 18,
   },
   marginTop: {
-    marginTop: 10,
+    marginTop: 12,
   },
   textDecorationLine: {
     textDecorationLine: "line-through",
+    marginLeft: 14
   },
   helpBtn: {
     width: 20,
@@ -58,11 +61,11 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.46)",
-    padding: 6
+    padding: 6,
   },
-  btnBuy:{
+  btnBuy: {
     borderRadius: 14,
     paddingVertical: 10,
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });

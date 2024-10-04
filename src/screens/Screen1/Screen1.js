@@ -8,7 +8,7 @@ const Screen1 = ({ navigation, route }) => {
   const indexImage = route.params?.indexImage;
 
   const handleSelectColors = () =>
-      navigation.navigate('Screen2', { indexImage, product });
+    navigation.navigate("Screen2", { indexImage, product });
 
   const product = {
     name: "Điện Thoại Vsmart Joy 3 - Hàng chính hãng",
@@ -43,26 +43,40 @@ const Screen1 = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={product.colors[3].image} style={styles.image} />
+      <Image
+        source={product.colors[indexImage ?? product.colors.length - 1].image}
+        style={styles.image}
+      />
       <View style={[styles.content, styles.marginTop]}>
         <TextComponent
           text={"Điện Thoại Vsmart Joy 3 - Hàng chính hãng"}
-          size={14}
-          weight={400}
+          weight={600}
+          styles={{ textAlign: "start" }}
         />
-        <View style={[styles.flexRow, styles.marginTop]}>
+        <View style={[styles.flexRow, styles.marginTop, { gap: 5 }]}>
           {new Array(5).fill(null).map((item, index) => (
             <Image
               key={index}
               style={styles.imgStart}
-              source={require("../../../assets/star.png")}
+              source={require("../../../assets/Star.png")}
             />
           ))}
-          <TextComponent text={"(Xem 828 đánh giá)"} size={14} weight={400} />
+          <TextComponent
+            text={"(Xem 828 đánh giá)"}
+            size={14}
+            weight={400}
+            styles={{ marginLeft: 10 }}
+          />
         </View>
 
-        <View style={[styles.marginTop, styles.flexRow]}>
-          <TextComponent text={"1.790.000 đ"} size={14}/>
+        <View
+          style={[
+            styles.marginTop,
+            styles.flexRow,
+            { gap: 20, textAlign: "center" },
+          ]}
+        >
+          <TextComponent text={"1.790.000 đ"} size={16} />
           <TextComponent
             text={"1.790.000 đ"}
             size={14}
@@ -108,18 +122,6 @@ const Screen1 = ({ navigation, route }) => {
           textSize={18}
           styles={[styles.marginTop, styles.btnBuy]}
         />
-        {/* <Pressable
-                    style={[styles.pickColorBtn, styles.boxShadow]}
-                    onPress={handleSelectColors}
-                >
-                    <Text style={styles.pickColorBtnText}>
-                        {product.colors.length} MÀU-CHỌN MÀU
-                    </Text>
-                    <Image
-                        style={styles.pickColorBtnIcon}
-                        source={require('../../../assets/rightIcon.png')}
-                    />
-                </Pressable> */}
       </View>
     </View>
   );
