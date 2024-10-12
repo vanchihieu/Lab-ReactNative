@@ -1,9 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 const Screen3 = () => {
   return (
-    <View>Screen3</View>
+    <Text>Screen3</Text>
   )
 }
 

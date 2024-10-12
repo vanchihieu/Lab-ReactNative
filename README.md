@@ -5,4 +5,4 @@
 
 ## Second Screen:
 
-![image](https://github.com/user-attachments/assets/178840b6-3d99-489c-a508-2725bd36d9c5)
+![image](https://github.com/user-attachments/assets/80422486-f55a-4f4d-bc07-911a451a6bca)
