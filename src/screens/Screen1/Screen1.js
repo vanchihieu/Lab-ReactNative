@@ -1,128 +1,179 @@
-import React from "react";
-import { Image, Pressable, View } from "react-native";
+import React, { useState } from "react";
+import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
-import TextComponent from "../../components/Text";
-import Button from "../../components/Button";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
-const Screen1 = ({ navigation, route }) => {
-  const indexImage = route.params?.indexImage;
-
-  const handleSelectColors = () =>
-    navigation.navigate("Screen2", { indexImage, product });
-
-  const product = {
-    name: "Điện Thoại Vsmart Joy 3 - Hàng chính hãng",
-    reviewCount: 828,
-    price: "1.790.000",
-    oldPrice: "1.790.000",
-    image: [],
-    supplier: "Tiki Tradding",
-    colors: [
-      {
-        name: "bạc",
-        color: "rgba(197, 241, 251, 1)",
-        image: require("../../../assets/vs_silver.png"),
-      },
-      {
-        name: "đỏ",
-        color: "rgba(243, 13, 13, 1)",
-        image: require("../../../assets/vs_red.png"),
-      },
-      {
-        name: "đen",
-        color: "rgba(0, 0, 0, 1)",
-        image: require("../../../assets/vs_black.png"),
-      },
-      {
-        name: "xanh",
-        color: "rgba(35, 72, 150, 1)",
-        image: require("../../../assets/vs_blue.png"),
-      },
-    ],
+const Screen1 = ({ navigation }) => {
+  const [selectedID, setSelectedId] = useState(0);
+  const [datas, setDatas] = useState([
+    {
+      name: "Ca nấu lẩu, nấu mì mini...",
+      shopName: "Devang",
+      isHotShop: true,
+      img: require("../../../assets/ca_nau_lau.png"),
+    },
+    {
+      name: "1KG KHÔ GÀ BƠ TỎI",
+      shopName: "LTD FOOD",
+      isHotShop: true,
+      img: require("../../../assets/ga_bo_toi.png"),
+    },
+    {
+      name: "Xe cần cẩu đa năng",
+      shopName: "Thế giới đồ chơi",
+      isHotShop: false,
+      img: require("../../../assets/xa_can_cau.png"),
+    },
+    {
+      name: "Đồ chơi dạng mô hình",
+      shopName: "Thế giới đồ chơi",
+      isHotShop: false,
+      img: require("../../../assets/do_choi_dang_mo_hinh.png"),
+    },
+    {
+      name: "Lãnh đạo giản đơn",
+      shopName: "Minh Long Book",
+      isHotShop: false,
+      img: require("../../../assets/lanh_dao_gian_don.png"),
+    },
+    {
+      name: "Hiểu lòng trẻ con",
+      shopName: "Minh Long Book",
+      isHotShop: false,
+      img: require("../../../assets/hieu_long_con_tre.png"),
+    },
+    {
+      name: "Donal Trump thiên tài lãnh đạo",
+      shopName: "Minh Long Book",
+      isHotShop: false,
+      img: require("../../../assets/trump_1.png"),
+    },
+    {
+      name: "Xe cần cẩu đa năng",
+      shopName: "Thế giới đồ chơi",
+      isHotShop: false,
+      img: require("../../../assets/xa_can_cau.png"),
+    },
+    {
+      name: "Đồ chơi dạng mô hình",
+      shopName: "Thế giới đồ chơi",
+      isHotShop: false,
+      img: require("../../../assets/do_choi_dang_mo_hinh.png"),
+    },
+    {
+      name: "Lãnh đạo giản đơn",
+      shopName: "Minh Long Book",
+      isHotShop: false,
+      img: require("../../../assets/lanh_dao_gian_don.png"),
+    },
+    {
+      name: "Hiểu lòng trẻ con",
+      shopName: "Minh Long Book",
+      isHotShop: false,
+      img: require("../../../assets/hieu_long_con_tre.png"),
+    },
+    {
+      name: "Donal Trump thiên tài lãnh đạo",
+      shopName: "Minh Long Book",
+      isHotShop: false,
+      img: require("../../../assets/trump_1.png"),
+    },
+  ]);
+  const renderItemChat = (item, index) => {
+    return (
+      <Pressable
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingVertical: 5,
+          backgroundColor: selectedID == index ? "#fff" : "transparent",
+        }}
+        onPress={() => setSelectedId(index)}
+      >
+        <View style={{ flexDirection: "row", flex: 2 }}>
+          <Image
+            source={item?.img}
+            resizeMode="contain"
+            style={{ width: 74, height: 74, marginRight: 15, flex: 1 }}
+          />
+          <View style={{ flex: 2 }}>
+            <Text
+              style={{ fontSize: 16, marginBottom: 14, width: "100%" }}
+              numberOfLines={1}
+            >
+              {item.name}
+            </Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text style={{ marginRight: 5 }}>Shop</Text>
+              <Text style={{ color: item.isHotShop ? "#FF0E0E" : "#000" }}>
+                {item.shopName}
+              </Text>
+            </View>
+          </View>
+        </View>
+        <Pressable style={{ flex: 1 }}>
+          <Text
+            style={{
+              backgroundColor: "#F31111",
+              color: "#fff",
+              width: "70%",
+              textAlign: "center",
+              paddingVertical: 10,
+              paddingHorizontal: 20,
+              fontSize: 18,
+              marginLeft: 10
+            }}
+          >
+            Chat
+          </Text>
+        </Pressable>
+      </Pressable>
+    );
+  };
+  const seperatorComponent = () => {
+    return (
+      <View
+        style={{ height: 0.5, width: "100%", backgroundColor: "#999" }}
+      ></View>
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Image
-        source={product.colors[indexImage ?? product.colors.length - 1].image}
-        style={styles.image}
-      />
-      <View style={[styles.content, styles.marginTop]}>
-        <TextComponent
-          text={"Điện Thoại Vsmart Joy 3 - Hàng chính hãng"}
-          weight={600}
-          styles={{ textAlign: "start" }}
-        />
-        <View style={[styles.flexRow, styles.marginTop, { gap: 5 }]}>
-          {new Array(5).fill(null).map((item, index) => (
-            <Image
-              key={index}
-              style={styles.imgStart}
-              source={require("../../../assets/Star.png")}
-            />
-          ))}
-          <TextComponent
-            text={"(Xem 828 đánh giá)"}
-            size={14}
-            weight={400}
-            styles={{ marginLeft: 10 }}
-          />
-        </View>
-
+      <View>
         <View
-          style={[
-            styles.marginTop,
-            styles.flexRow,
-            { gap: 20, textAlign: "center" },
-          ]}
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            backgroundColor: "#1BA9FF",
+            paddingHorizontal: 15,
+            paddingVertical: 15,
+          }}
         >
-          <TextComponent text={"1.790.000 đ"} size={16} />
-          <TextComponent
-            text={"1.790.000 đ"}
-            size={14}
-            weight={400}
-            styles={styles.textDecorationLine}
-          />
-        </View>
-
-        <View style={[styles.marginTop, styles.flexRow]}>
-          <TextComponent
-            text={"Ở ĐÂU RẺ HƠN HOÀN TIỀN"}
-            color={"#FA0000"}
-            size={14}
-            weight={400}
-          />
-          <Pressable style={styles.helpBtn}>
-            <Image
-              style={styles.helpIcon}
-              source={require("../../../assets/help.png")}
-            />
+          <Pressable onPress={() => navigation.goBack()}>
+            <AntDesign name="back" size={24} color="black" />
+          </Pressable>
+          <Text style={{ color: "#fff", fontSize: 18 }}>Chat</Text>
+          <Pressable>
+            <AntDesign name="shoppingcart" size={24} color="black" />
           </Pressable>
         </View>
-
-        <Pressable
-          style={[styles.marginTop, styles.flexRow, styles.pickColorBtn]}
-          onPress={handleSelectColors}
-        >
-          <TextComponent
-            text={product.colors.length + " MÀU-CHỌN MÀU"}
-            size={14}
-            weight={400}
-          />
-          <Image
-            style={styles.rightcon}
-            source={require("../../../assets/rightIcon.png")}
-          />
-        </Pressable>
-
-        <Button
-          text={"CHỌN MUA"}
-          color={"#CA1536"}
-          textColor={"#F9F2F2"}
-          textSize={18}
-          styles={[styles.marginTop, styles.btnBuy]}
-        />
       </View>
+
+      <View style={{ paddingHorizontal: 40, paddingVertical: 10 }}>
+        <Text style={{ fontSize: 16, fontWeight: 600 }}>
+          Bạn có thắc mắc với sản phẩm vừa xem. Đừng ngại chat với shop!
+        </Text>
+      </View>
+
+      <FlatList
+        data={datas}
+        keyExtractor={(item, index) => index}
+        renderItem={({ item, index }) => renderItemChat(item, index)}
+        extraData={selectedID}
+        ItemSeparatorComponent={seperatorComponent}
+      />
     </View>
   );
 };

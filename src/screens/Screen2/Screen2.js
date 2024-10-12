@@ -11,8 +11,7 @@ import { styles } from "./styles";
 import TextComponent from "../../components/Text";
 import Button from "../../components/Button";
 
-const Screen2 = ({ navigation, route }) => {
-  const { indexImage, product } = route.params;
+const Screen2 = ({ navigation }) => {
 
   const [colorSelected, setColorSelected] = useState(indexImage);
 
