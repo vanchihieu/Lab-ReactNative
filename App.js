@@ -1,56 +1,28 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import Screen1 from "./src/screens/Screen1/Screen1";
-import Screen2 from "./src/screens/Screen2/Screen2";
 import Screen3 from "./src/screens/Screen3";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Octicons } from "@expo/vector-icons";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import EditTaskScreen from "./src/screens/EditTask/EditTask";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AddTaskScreen from "./src/screens/AddTask/AddTask";
+
+const Stack = createNativeStackNavigator();
 
 export default function App({ navigation }) {
-  const BottomTab = createBottomTabNavigator();
-
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
-        <BottomTab.Navigator
+        <Stack.Navigator
           screenOptions={{
             headerShown: false,
             tabBarStyle: { backgroundColor: "#1BA9FF", paddingTop: 12 },
           }}
         >
-          <BottomTab.Screen
-            name="Screen1"
-            component={Screen1}
-            options={{
-              title: "",
-              tabBarIcon: ({ focused, color }) => {
-                return <Octicons name="three-bars" size={24} color="black" />;
-              },
-            }}
-          />
+          <Stack.Screen name="Screen1" component={Screen1} />
 
-          <BottomTab.Screen
-            name="Screen2"
-            component={Screen2}
-            options={{
-              title: "",
-              tabBarIcon: ({ focused, color }) => {
-                return <Octicons name="home" size={24} color="black" />;
-              },
-            }}
-          />
-          <BottomTab.Screen
-            name="Screen3"
-            component={Screen3}
-            options={{
-              title: "",
-              tabBarIcon: ({ focused, color }) => {
-                return <AntDesign name="back" size={24} color="black" />;
-              },
-            }}
-          />
-        </BottomTab.Navigator>
+          <Stack.Screen name="EditTask" component={EditTaskScreen} />
+          <Stack.Screen name="AddTask" component={AddTaskScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
   );

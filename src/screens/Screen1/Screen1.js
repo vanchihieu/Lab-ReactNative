@@ -1,179 +1,187 @@
-import React, { useState } from "react";
-import { FlatList, Image, Pressable, Text, View } from "react-native";
-import { styles } from "./styles";
+import React, { useEffect, useState } from "react";
+import { Alert, FlatList, Image, Text, TextInput, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
 
 const Screen1 = ({ navigation }) => {
-  const [selectedID, setSelectedId] = useState(0);
-  const [datas, setDatas] = useState([
-    {
-      name: "Ca nấu lẩu, nấu mì mini...",
-      shopName: "Devang",
-      isHotShop: true,
-      img: require("../../../assets/ca_nau_lau.png"),
-    },
-    {
-      name: "1KG KHÔ GÀ BƠ TỎI",
-      shopName: "LTD FOOD",
-      isHotShop: true,
-      img: require("../../../assets/ga_bo_toi.png"),
-    },
-    {
-      name: "Xe cần cẩu đa năng",
-      shopName: "Thế giới đồ chơi",
-      isHotShop: false,
-      img: require("../../../assets/xa_can_cau.png"),
-    },
-    {
-      name: "Đồ chơi dạng mô hình",
-      shopName: "Thế giới đồ chơi",
-      isHotShop: false,
-      img: require("../../../assets/do_choi_dang_mo_hinh.png"),
-    },
-    {
-      name: "Lãnh đạo giản đơn",
-      shopName: "Minh Long Book",
-      isHotShop: false,
-      img: require("../../../assets/lanh_dao_gian_don.png"),
-    },
-    {
-      name: "Hiểu lòng trẻ con",
-      shopName: "Minh Long Book",
-      isHotShop: false,
-      img: require("../../../assets/hieu_long_con_tre.png"),
-    },
-    {
-      name: "Donal Trump thiên tài lãnh đạo",
-      shopName: "Minh Long Book",
-      isHotShop: false,
-      img: require("../../../assets/trump_1.png"),
-    },
-    {
-      name: "Xe cần cẩu đa năng",
-      shopName: "Thế giới đồ chơi",
-      isHotShop: false,
-      img: require("../../../assets/xa_can_cau.png"),
-    },
-    {
-      name: "Đồ chơi dạng mô hình",
-      shopName: "Thế giới đồ chơi",
-      isHotShop: false,
-      img: require("../../../assets/do_choi_dang_mo_hinh.png"),
-    },
-    {
-      name: "Lãnh đạo giản đơn",
-      shopName: "Minh Long Book",
-      isHotShop: false,
-      img: require("../../../assets/lanh_dao_gian_don.png"),
-    },
-    {
-      name: "Hiểu lòng trẻ con",
-      shopName: "Minh Long Book",
-      isHotShop: false,
-      img: require("../../../assets/hieu_long_con_tre.png"),
-    },
-    {
-      name: "Donal Trump thiên tài lãnh đạo",
-      shopName: "Minh Long Book",
-      isHotShop: false,
-      img: require("../../../assets/trump_1.png"),
-    },
-  ]);
-  const renderItemChat = (item, index) => {
-    return (
-      <Pressable
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          paddingVertical: 5,
-          backgroundColor: selectedID == index ? "#fff" : "transparent",
-        }}
-        onPress={() => setSelectedId(index)}
-      >
-        <View style={{ flexDirection: "row", flex: 2 }}>
-          <Image
-            source={item?.img}
-            resizeMode="contain"
-            style={{ width: 74, height: 74, marginRight: 15, flex: 1 }}
-          />
-          <View style={{ flex: 2 }}>
-            <Text
-              style={{ fontSize: 16, marginBottom: 14, width: "100%" }}
-              numberOfLines={1}
-            >
-              {item.name}
-            </Text>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ marginRight: 5 }}>Shop</Text>
-              <Text style={{ color: item.isHotShop ? "#FF0E0E" : "#000" }}>
-                {item.shopName}
-              </Text>
-            </View>
-          </View>
-        </View>
-        <Pressable style={{ flex: 1 }}>
-          <Text
-            style={{
-              backgroundColor: "#F31111",
-              color: "#fff",
-              width: "70%",
-              textAlign: "center",
-              paddingVertical: 10,
-              paddingHorizontal: 20,
-              fontSize: 18,
-              marginLeft: 10
-            }}
-          >
-            Chat
-          </Text>
-        </Pressable>
-      </Pressable>
+  const [tasks, setTasks] = useState([]);
+
+  const [search, setSearch] = useState("");
+
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const editTask = (task) => {
+    navigation.navigate("EditTask", { task, updateTask });
+  };
+
+  const updateTask = (updatedTask) => {
+    setTasks(
+      tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
   };
-  const seperatorComponent = () => {
+
+  const deleteTask = (taskId) => {
+    Alert.alert(
+      "Confirm Delete",
+      "Are you sure you want to delete this task?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: () => {
+            setTasks(tasks.filter((task) => task.id !== taskId));
+          },
+        },
+      ]
+    );
+  };
+
+  const addNewTask = (newTaskTitle) => {
+    const newTask = {
+      id: (tasks.length + 1).toString(), 
+      title: newTaskTitle,
+    };
+    setTasks([...tasks, newTask]);
+  };
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch(
+          "https://6459b0cb8badff578e129284.mockapi.io/user"
+        );
+        const data = await response.json();
+        setTasks(data);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
+  const renderItem = (item, index) => {
     return (
       <View
-        style={{ height: 0.5, width: "100%", backgroundColor: "#999" }}
-      ></View>
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 16,
+          backgroundColor: "#D2D5D8",
+          padding: 12,
+          borderRadius: 16,
+        }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+          <AntDesign name="checksquareo" size={24} color="green" />
+          <Text style={{ fontSize: 16 }}>{item.title}</Text>
+        </View>
+        <View style={{ flexDirection: "row", gap: 8 }}>
+          <AntDesign
+            name="edit"
+            size={24}
+            color="#EA2828"
+            onPress={() => editTask(item)}
+          />
+          <AntDesign
+            name="delete"
+            size={24}
+            color="blue"
+            onPress={() => deleteTask(item.id)}
+          />
+        </View>
+      </View>
     );
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            backgroundColor: "#1BA9FF",
-            paddingHorizontal: 15,
-            paddingVertical: 15,
-          }}
-        >
-          <Pressable onPress={() => navigation.goBack()}>
-            <AntDesign name="back" size={24} color="black" />
-          </Pressable>
-          <Text style={{ color: "#fff", fontSize: 18 }}>Chat</Text>
-          <Pressable>
-            <AntDesign name="shoppingcart" size={24} color="black" />
-          </Pressable>
+    <View style={{ padding: 14 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: 16,
+        }}
+      >
+        <AntDesign name="back" size={24} color="black" />
+        <View style={{ flexDirection: "row", gap: 5 }}>
+          <View
+            style={{
+              backgroundColor: "#DACFF3",
+              borderWidth: 1,
+              borderRadius: 100,
+              textAlign: "center",
+            }}
+          >
+            <Image
+              source={require("../../../assets/user.png")}
+              width={10}
+              height={10}
+            />
+          </View>
+          <View>
+            <Text
+              style={{ fontWeight: "bold", fontSize: 22, textAlign: "center" }}
+            >
+              Hi Twinkle
+            </Text>
+            <Text style={{ fontSize: 16 }}>Here agrate day a head</Text>
+          </View>
         </View>
       </View>
 
-      <View style={{ paddingHorizontal: 40, paddingVertical: 10 }}>
-        <Text style={{ fontSize: 16, fontWeight: 600 }}>
-          Bạn có thắc mắc với sản phẩm vừa xem. Đừng ngại chat với shop!
-        </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          borderColor: "black",
+          borderWidth: 0.5,
+          marginTop: 16,
+          marginBottom: 24,
+          borderRadius: 2,
+          padding: 4,
+        }}
+      >
+        <EvilIcons name="search" size={28} color="black" />
+        <TextInput
+          placeholder="Search"
+          value={search}
+          onChangeText={setSearch}
+        />
       </View>
 
-      <FlatList
-        data={datas}
-        keyExtractor={(item, index) => index}
-        renderItem={({ item, index }) => renderItemChat(item, index)}
-        extraData={selectedID}
-        ItemSeparatorComponent={seperatorComponent}
-      />
+      <View style={{ marginTop: 12 }}>
+        <FlatList
+          data={filteredTasks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => renderItem(item, index)}
+        />
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          marginLeft: 170,
+          backgroundColor: "#26C3D9",
+          width: 60,
+          height: 60,
+          borderRadius: 50,
+          textAlign: "center",
+        }}
+      >
+        <AntDesign
+          name="plus"
+          size={22}
+          color="white"
+          onPress={() => navigation.navigate("AddTask", { addNewTask })}
+        />
+      </View>
     </View>
   );
 };
