@@ -4,9 +4,13 @@ import Screen3 from "./src/screens/Screen3";
 import EditTaskScreen from "./src/screens/EditTask/EditTask";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AddTaskScreen from "./src/screens/AddTask/AddTask";
-import Screen1 from "./src/screens/saga/screens/Screen1";
+// import Screen1 from "./src/screens/saga/screens/Screen1";
 import { Provider } from "react-redux";
-import store from "./src/screens/saga/store/configureStore";
+// import store from "./src/screens/saga/store/configureStore";
+
+// ** redux-toolkit
+import Screen1 from "./src/screens/redux-toolkit/screen/Screen1";
+import store from "./src/screens/redux-toolkit/store/store";
 
 const Stack = createNativeStackNavigator();
 
