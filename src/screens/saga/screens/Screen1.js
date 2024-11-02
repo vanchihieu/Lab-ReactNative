@@ -3,7 +3,12 @@ import { Alert, FlatList, Image, Text, TextInput, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTasksRequest } from "../saga/actions/taskActions";
+import {
+  addTask,
+  deleteTask,
+  fetchTasksRequest,
+  updateTask,
+} from "../actions/taskActions";
 
 const Screen1 = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -17,15 +22,17 @@ const Screen1 = ({ navigation }) => {
     dispatch(fetchTasksRequest());
   }, [dispatch]);
 
-  const filteredTasks = tasks.filter(
-    (task) =>
-      task.title && task.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredTasks = Array.isArray(tasks)
+    ? tasks.filter(
+        (task) =>
+          task.name && task.name.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
 
   const addNewTask = (newTaskTitle) => {
     const newTask = {
       id: (tasks.length + 1).toString(),
-      title: newTaskTitle,
+      name: newTaskTitle,
     };
     dispatch(addTask(newTask));
   };
@@ -39,41 +46,27 @@ const Screen1 = ({ navigation }) => {
   };
 
   const handleDeleteTask = (taskId) => {
-    Alert.alert(
-      "Confirm Delete",
-      "Are you sure you want to delete this task?",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Delete",
-          onPress: () => {
-            dispatch(deleteTask(taskId));
-          },
-        },
-      ]
-    );
+    dispatch(deleteTask(taskId));
+
+    // Alert.alert(
+    //   "Confirm Delete",
+    //   "Are you sure you want to delete this task?",
+    //   [
+    //     {
+    //       text: "Cancel",
+    //       style: "cancel",
+    //     },
+    //     {
+    //       text: "Delete",
+    //       onPress: () => {
+    //         dispatch(deleteTask(taskId));
+    //       },
+    //     },
+    //   ]
+    // );
   };
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await fetch(
-          "https://6459b0cb8badff578e129284.mockapi.io/user"
-        );
-        const data = await response.json();
-        setTasks(data);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-      }
-    };
-
-    fetchTasks();
-  }, []);
-
-  const renderItem = (item, index) => {
+  const renderItem = (item) => {
     return (
       <View
         style={{
@@ -127,7 +120,7 @@ const Screen1 = ({ navigation }) => {
             }}
           >
             <Image
-              source={require("../../../assets/user.png")}
+              source={require("../../../../assets/user.png")}
               width={10}
               height={10}
             />
@@ -158,14 +151,14 @@ const Screen1 = ({ navigation }) => {
         <TextInput
           placeholder="Search"
           value={search}
-          onChangeText={setSearch}
+          onChangeText={(text) => setSearch(text)}
         />
       </View>
 
       <View style={{ marginTop: 12 }}>
         <FlatList
           data={filteredTasks}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => renderItem(item, index)}
         />
       </View>

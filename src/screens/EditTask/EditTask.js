@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 const EditTaskScreen = ({ route, navigation }) => {
+  console.log(route.params);
+  
   const { task, updateTask } = route.params;
-  const [taskTitle, setTaskTitle] = useState(task.title);
+  const [taskTitle, setTaskTitle] = useState(task.name);
 
   const saveTask = () => {
-    const updatedTask = { ...task, title: taskTitle };
+    const updatedTask = { ...task, name: taskTitle };
     updateTask(updatedTask); 
     navigation.goBack(); 
   };

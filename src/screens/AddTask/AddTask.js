@@ -55,7 +55,9 @@ const AddTaskScreen = ({ navigation, route }) => {
             <Text style={{ fontSize: 16 }}>Here agrate day a head</Text>
           </View>
         </View>
-        <Ionicons name="arrow-back" size={24} color="black" />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
       </View>
       <Text style={styles.title}>Add Your Job</Text>
       <View style={{ position: "relative" }}>
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     paddingLeft: 40,
-    borderWidth: 1
+    borderWidth: 1,
   },
 });
 
