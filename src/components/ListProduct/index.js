@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, FlatList, Image } from "react-native";
+import { Alert, Button, FlatList, Image } from "react-native";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../slices/productSlice";
+import { deleteProduct, fetchProducts } from "../../slices/productSlice";
 
 // const DATAS = [
 //   {
@@ -90,6 +90,29 @@ export default function ListProduct({ navigation }) {
     setCategory(arr);
   }, [products]);
 
+  const handleDeleteProduct = (item) => {
+    Alert.alert(
+      "Confirm Delete",
+      `Are you sure you want to delete ${item.name}?`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: () => {
+            dispatch(deleteProduct(item.id));
+          },
+          style: "destructive",
+        },
+      ],
+      { cancelable: true }
+    );
+
+    // dispatch(deleteProduct(item.id));
+  };
+
   function renderItemProduct(item, index) {
     return (
       <View
@@ -140,6 +163,11 @@ export default function ListProduct({ navigation }) {
             </Text>
           </View>
         </Pressable>
+        <Button
+          title="Update"
+          onPress={() => navigation.navigate("UpdateProduct", { item })}
+        />
+        <Button title="Delete" onPress={() => handleDeleteProduct(item)} />
       </View>
     );
   }
@@ -209,7 +237,7 @@ export default function ListProduct({ navigation }) {
           renderItem={({ item, index }) => renderItemProduct(item, index)}
           numColumns={2}
         />
-         <Button
+        <Button
           title="Add Product"
           onPress={() => navigation.navigate("AddProduct")}
         />

@@ -9,6 +9,7 @@ import ListProduct from "./src/components/ListProduct";
 import ProductDetail from "./src/components/ProductDetail";
 import store from "./src/store/store";
 import AddProduct from "./src/components/AddProduct/AddProduct";
+import UpdateProduct from "./src/components/UpdateProduct/UpdateProduct";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
             <Stack.Screen name="ListProduct" component={ListProduct} />
             <Stack.Screen name="ProductDetail" component={ProductDetail} />
             <Stack.Screen name="AddProduct" component={AddProduct} />
+            <Stack.Screen name="UpdateProduct" component={UpdateProduct} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
