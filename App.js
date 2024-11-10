@@ -10,7 +10,7 @@ import store from "./src/store/store";
 import GetStarted from "./src/components/GetStarted";
 import ListProduct from "./src/components/ProductList";
 import ProductDetail from "./src/components/ProductDetail";
-import AddProduct from "./src/components/ProductAdd";
+import AddProduct from "./src/components/ProductAdd/AddProduct";
 import UpdateProduct from "./src/components/UpdateProduct/UpdateProduct";
 
 const Stack = createNativeStackNavigator();
