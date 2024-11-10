@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../slices/productSlice";
+import { updateProduct, updateProductAsync } from "../../slices/productSlice";
 
 const UpdateProduct = ({ route, navigation }) => {
   const { item } = route.params;
@@ -21,7 +21,7 @@ const UpdateProduct = ({ route, navigation }) => {
       image,
       isWish,
     };
-    dispatch(updateProduct(updatedProduct));
+    dispatch(updateProductAsync(updatedProduct));
     navigation.goBack();
   };
 

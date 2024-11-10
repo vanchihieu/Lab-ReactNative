@@ -9,7 +9,12 @@ import {
   Pressable,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, fetchProducts } from "../../slices/productSlice";
+import {
+  deleteProductAsync,
+  fetchProducts,
+  updateProductAsync,
+} from "../../slices/productSlice";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 // const DATAS = [
 //   {
@@ -65,7 +70,6 @@ import { deleteProduct, fetchProducts } from "../../slices/productSlice";
 export default function ListProduct({ navigation }) {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((state) => state.products);
-  console.log("🚀 ~ ListProduct ~ products:", products);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -102,7 +106,7 @@ export default function ListProduct({ navigation }) {
         {
           text: "Delete",
           onPress: () => {
-            dispatch(deleteProduct(item.id));
+            dispatch(deleteProductAsync(item.id));
           },
           style: "destructive",
         },
@@ -111,6 +115,11 @@ export default function ListProduct({ navigation }) {
     );
 
     // dispatch(deleteProduct(item.id));
+  };
+
+  const handleHeartPress = (item) => {
+    const newProduct = { ...item, isWish: !item.isWish };
+    dispatch(updateProductAsync(newProduct));
   };
 
   function renderItemProduct(item, index) {
@@ -135,26 +144,26 @@ export default function ListProduct({ navigation }) {
             navigation.navigate("ProductDetail", { item: item });
           }}
         >
-          <Image
-            source={{ uri: item.image }}
-            resizeMode="contain"
-            style={{ width: 135, height: 135 }}
-          />
-          <Image
-            source={
-              item.isWish
-                ? require("../../../assets/heartSelected.png")
-                : require("../../../assets/heart.png")
-            }
-            resizeMode="contain"
-            style={{
-              width: 25,
-              height: 25,
-              position: "absolute",
-              left: 10,
-              top: 10,
-            }}
-          />
+            <Image
+              source={{ uri: item.image }}
+              resizeMode="contain"
+              style={{ width: 135, height: 135 }}
+            />
+            <Pressable
+              onPress={() => handleHeartPress(item)}
+              style={{
+                position: "absolute",
+                left: 10,
+                top: 10,
+              }}
+            >
+              <AntDesign
+                name={item.isWish ? "heart" : "hearto"}
+                size={24}
+                color={item.isWish ? "red" : "black"}
+              />
+            </Pressable>
+
           <Text style={{ textAlign: "center", fontSize: 20 }}>{item.name}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={{ fontSize: 20, color: "#f7ba83" }}>$</Text>
@@ -163,11 +172,11 @@ export default function ListProduct({ navigation }) {
             </Text>
           </View>
         </Pressable>
-        <Button
+        {/* <Button
           title="Update"
           onPress={() => navigation.navigate("UpdateProduct", { item })}
         />
-        <Button title="Delete" onPress={() => handleDeleteProduct(item)} />
+        <Button title="Delete" onPress={() => handleDeleteProduct(item)} /> */}
       </View>
     );
   }

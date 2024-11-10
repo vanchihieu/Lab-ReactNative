@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   Text,
@@ -6,9 +7,25 @@ import {
   Image,
   Pressable,
 } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
+import { useDispatch } from "react-redux";
+import { updateProductAsync } from "../../slices/productSlice";
 
 export default function ProductDetail({ navigation, route }) {
   const { item } = route?.params;
+  const [isWish, setIsWish] = useState(item.isWish);
+  const dispatch = useDispatch();
+
+  const handleToggleWish = () => {
+    setIsWish(!isWish);
+    dispatch(
+      updateProductAsync({
+        ...item,
+        isWish: !isWish,
+      })
+    );
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <StatusBar />
@@ -66,11 +83,13 @@ export default function ProductDetail({ navigation, route }) {
               paddingBottom: 50,
             }}
           >
-            <Image
-              source={require("../../../assets/heartSelected.png")}
-              resizeMode="contain"
-              style={{ width: 35, height: 35 }}
-            />
+            <Pressable onPress={handleToggleWish}>
+              <AntDesign
+                name={isWish ? "heart" : "hearto"}
+                size={35}
+                color={isWish ? "red" : "black"}
+              />
+            </Pressable>
             <Pressable
               style={{ flex: 1, alignItems: "center" }}
               onPress={() => navigation.goBack()}

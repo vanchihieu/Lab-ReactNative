@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../slices/productSlice";
+import {  addProductAsync } from "../../slices/productSlice";
 
 const AddProduct = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const AddProduct = ({ navigation }) => {
       image,
       isWish,
     };
-    dispatch(addProduct(newProduct));
+    dispatch(addProductAsync(newProduct));
     navigation.goBack();
   };
 
