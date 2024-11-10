@@ -95,26 +95,26 @@ export default function ListProduct({ navigation }) {
   }, [products]);
 
   const handleDeleteProduct = (item) => {
-    Alert.alert(
-      "Confirm Delete",
-      `Are you sure you want to delete ${item.name}?`,
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Delete",
-          onPress: () => {
-            dispatch(deleteProductAsync(item.id));
-          },
-          style: "destructive",
-        },
-      ],
-      { cancelable: true }
-    );
+    // Alert.alert(
+    //   "Confirm Delete",
+    //   `Are you sure you want to delete ${item.name}?`,
+    //   [
+    //     {
+    //       text: "Cancel",
+    //       style: "cancel",
+    //     },
+    //     {
+    //       text: "Delete",
+    //       onPress: () => {
+    //         dispatch(deleteProductAsync(item.id));
+    //       },
+    //       style: "destructive",
+    //     },
+    //   ],
+    //   { cancelable: true }
+    // );
 
-    // dispatch(deleteProduct(item.id));
+    dispatch(deleteProductAsync(item.id));
   };
 
   const handleHeartPress = (item) => {
@@ -144,25 +144,25 @@ export default function ListProduct({ navigation }) {
             navigation.navigate("ProductDetail", { item: item });
           }}
         >
-            <Image
-              source={{ uri: item.image }}
-              resizeMode="contain"
-              style={{ width: 135, height: 135 }}
+          <Image
+            source={{ uri: item.image }}
+            resizeMode="contain"
+            style={{ width: 135, height: 135 }}
+          />
+          <Pressable
+            onPress={() => handleHeartPress(item)}
+            style={{
+              position: "absolute",
+              left: 10,
+              top: 10,
+            }}
+          >
+            <AntDesign
+              name={item.isWish ? "heart" : "hearto"}
+              size={24}
+              color={item.isWish ? "red" : "black"}
             />
-            <Pressable
-              onPress={() => handleHeartPress(item)}
-              style={{
-                position: "absolute",
-                left: 10,
-                top: 10,
-              }}
-            >
-              <AntDesign
-                name={item.isWish ? "heart" : "hearto"}
-                size={24}
-                color={item.isWish ? "red" : "black"}
-              />
-            </Pressable>
+          </Pressable>
 
           <Text style={{ textAlign: "center", fontSize: 20 }}>{item.name}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -172,11 +172,14 @@ export default function ListProduct({ navigation }) {
             </Text>
           </View>
         </Pressable>
-        {/* <Button
-          title="Update"
-          onPress={() => navigation.navigate("UpdateProduct", { item })}
-        />
-        <Button title="Delete" onPress={() => handleDeleteProduct(item)} /> */}
+        {/* <View style={{gap: 10}}>
+          <Button
+            title="Update"
+            onPress={() => navigation.navigate("UpdateProduct", { item })}
+            style={{ marginBottom: 10 }}
+          />
+          <Button title="Delete" onPress={() => handleDeleteProduct(item)} />
+        </View> */}
       </View>
     );
   }

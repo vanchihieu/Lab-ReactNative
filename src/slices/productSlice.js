@@ -53,15 +53,13 @@ export const updateProductAsync = createAsyncThunk(
 export const deleteProductAsync = createAsyncThunk(
   "products/deleteProduct",
   async (productId) => {
-    const response = await fetch(
+    await fetch(
       `https://67264846302d03037e6d0712.mockapi.io/bike/${productId}`,
       {
         method: "DELETE",
       }
     );
-    const data = await response.json();
-
-    return data;
+    return productId;
   }
 );
 
@@ -74,38 +72,20 @@ const initialState = {
 const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(addProductAsync.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+
       .addCase(addProductAsync.fulfilled, (state, action) => {
         state.loading = false;
         state.products.push(action.payload);
       })
-      .addCase(addProductAsync.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(updateProductAsync.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+
       .addCase(updateProductAsync.fulfilled, (state, action) => {
         state.loading = false;
         const index = state.products.findIndex(
@@ -115,23 +95,12 @@ const productSlice = createSlice({
           state.products[index] = action.payload;
         }
       })
-      .addCase(updateProductAsync.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(deleteProductAsync.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+
       .addCase(deleteProductAsync.fulfilled, (state, action) => {
         state.loading = false;
         state.products = state.products.filter(
           (product) => product.id !== action.payload
         );
-      })
-      .addCase(deleteProductAsync.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
       });
   },
 });

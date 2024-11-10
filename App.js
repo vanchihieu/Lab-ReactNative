@@ -2,15 +2,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// ** redux-toolkit
 import { Provider } from "react-redux";
+// ** redux-toolkit
 import store from "./src/store/store";
 
 // ** Screens
 import GetStarted from "./src/components/GetStarted";
-import ListProduct from "./src/components/ListProduct";
+import ListProduct from "./src/components/ProductList";
 import ProductDetail from "./src/components/ProductDetail";
-import AddProduct from "./src/components/AddProduct/AddProduct";
+import AddProduct from "./src/components/ProductAdd";
 import UpdateProduct from "./src/components/UpdateProduct/UpdateProduct";
 
 const Stack = createNativeStackNavigator();
